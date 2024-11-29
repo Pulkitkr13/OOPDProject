@@ -19,7 +19,7 @@ all: $(BUILD_DIR)/$(EXECUTABLE) $(STATIC_LIB) $(DYNAMIC_LIB)
 
 # Link object files into the executable
 $(BUILD_DIR)/$(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS) -lwifisimulator
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS) -Lwifisimulator
 
 # Compile source files into object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
@@ -37,6 +37,8 @@ $(DYNAMIC_LIB): $(OBJECTS)
 clean:
 ifeq ($(OS),Windows_NT)
 	del /q $(BUILD_DIR)\*
+	del /q $(DYNAMIC_LIB)
+	del /q $(DYNAMIC_LIB)
 else
 	rm -rf $(BUILD_DIR)/*
 endif
